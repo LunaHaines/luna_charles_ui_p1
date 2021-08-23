@@ -1,4 +1,4 @@
-import { ViewComponent } from "../view.component";
+import { ViewComponent } from "../view.component.js";
 import env from '../../util/env.js';
 import state from '../../util/state.js';
 import router from '../../app.js';
@@ -84,6 +84,29 @@ function SignupComponent() {
                 } else {
                     router.navigate('/studentlogin');
                 }
-            })
+            }).catch(err => console.error(err));
+    }
+
+    this.render = function() {
+        SignupComponent.prototype.injectTemplate(() => {
+            firstnameFieldElement = document.getElementById('signup-form-firstname');
+            lastnameFieldElement = document.getElementById('signup-form-lastname');
+            emailFieldElement = document.getElementById('signup-form-email');
+            passwordFieldElement = document.getElementById('signup-form-password');
+            passwordConfirmFieldElement = document.getElementById('signup-form-password-confirm');
+            signupButtonElement = document.getElementById('signup-form-button');
+            errorMessageElement = document.getElementById('error-msg');
+
+            firstnameFieldElement.addEventListener('keyup', updateFirstname);
+            lastnameFieldElement.addEventListener('keyup', updateLastname);
+            emailFieldElement.addEventListener('keyup', updateEmail);
+            passwordFieldElement.addEventListener('keyup', updatePassword);
+            passwordConfirmFieldElement.addEventListener('keyup', updatePasswordConfirm);
+            signupButtonElement.addEventListener('click', signup);
+        });
+
+        SignupComponent.prototype.injectStylesheet();
     }
 }
+
+export default new SignupComponent();
