@@ -72,6 +72,7 @@ function SignupComponent() {
             },
             body: JSON.stringify(info)
         }).then(resp => {
+                console.log('fetching...');
                 status = resp.status;
                 return resp.json();
             }).then(payload => {
