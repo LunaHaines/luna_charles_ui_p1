@@ -24,7 +24,7 @@ function navbarComponent() {
 
     function injectStyleSheet() {
         let dynamicStyle = document.getElementById('nav-css')
-        if (dynamicStyle) dynamicStyle.remove():
+        if (dynamicStyle) dynamicStyle.remove();
         dynamicStyle = document.createElement('link');
         dynamicStyle.id = 'nav-css';
         dynamicStyle.rel = 'stylesheet';
@@ -45,12 +45,14 @@ function navbarComponent() {
         injectStyleSheet();
         injectTemplate(() => {
             // TODO add or remove components as needed
+            document.getElementById('signup').addEventListener('click', navigateToView)
             document.getElementById('logout').addEventListener('click', logout);
-            document.getElementById('nav-to-login').addEventListener('click', navigateToView);
-            document.getElementById('nav-to-student').addEventListener('click', navigateToView);
-            document.getElementById('nav-to-faculty').addEventListener('click', navigateToView);
-            document.getElementById('nav-to-register').addEventListener('click', navigateToView);
-            document.getElementById('nav-to-course').addEventListener('click', navigateToView);
+            document.getElementById('nav-to-student-login').addEventListener('click', navigateToView);
+            document.getElementById('nav-to-student-dashboard').addEventListener('click', navigateToView);
+            document.getElementById('nav-to-faculty-login').addEventListener('click', navigateToView);
+            document.getElementById('nav-to-faculty-dashboard').addEventListener('click', navigateToView);
         })
     }
 }
+
+export default new navbarComponent;

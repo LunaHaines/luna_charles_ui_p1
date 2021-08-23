@@ -11,17 +11,24 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
+            <a id="signup" class="nav-link" data-route="/signup">Sign Up</a>
+          </li>
+          <li class="nav-item">
             <a id="logout" class="nav-link" href="#">Logout</a>
           </li>
           <!--TODO add or remove components here as needed-->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Student</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-              <li><a id="nav-to-login" class="dropdown-item" data-route="/login">Login</a></li>
-              <li><a id="nav-to-student" class="dropdown-item" data-route="/student">Student</a></li>
-              <li><a id="nav-to-faculty" class="dropdown-item" data-route="/faculty">Faculty</a></li>
-              <li><a id="nav-to-register" class="dropdown-item" data-route="/register">Register</a></li>
-              <li><a id="nav-to-course" class="dropdown-item" data-route="/course">Course</a></li>
+              <li><a id="nav-to-student-login" class="dropdown-item" data-route="/studentlogin">Login</a></li>
+              <li><a id="nav-to-student-dashboard" class="dropdown-item" data-route="/studentdashboard">Dashboard</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Faculty</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown04">
+              <li><a id="nav-to-faculty-login" class="dropdown-item" data-route="/facultylogin">Login</a></li>
+              <li><a id="nav-to-faculty-dashboard" class="dropdown-item" data-route="/facultydashboard">dashboard</a></li>
             </ul>
           </li>
         </ul>
