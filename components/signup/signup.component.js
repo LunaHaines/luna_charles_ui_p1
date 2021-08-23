@@ -21,6 +21,7 @@ function SignupComponent() {
 
     function updateFirstname(e) {
         firstname = e.target.value;
+        console.log(firstname);
     }
 
     function updateLastname(e) {
@@ -49,7 +50,8 @@ function SignupComponent() {
         }
     }
 
-    function signup() {
+    function signup(e) {
+        e.preventDefault();
         if (!firstname || !lastname || !email || !password || !passwordConfirm) {
             updateErrorMessage('You need to provide information in all fields');
         } else if (password !== passwordConfirm) {
@@ -65,6 +67,7 @@ function SignupComponent() {
 
         let status = 0;
 
+        console.log('about to fetch');
         fetch(`${env.apiUrl}/student`, {
             method: 'POST',
             headers: {

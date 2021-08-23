@@ -14,7 +14,7 @@ const router = new Router(routes);
 
 window.onload = () => {
     navbarComponent.render();
-    router.navigate('/signup');
+    //router.navigate('/signup');
 }
 
 export default router;
