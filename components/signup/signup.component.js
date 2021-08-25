@@ -53,9 +53,11 @@ function SignupComponent() {
     function signup(e) {
         e.preventDefault();
         if (!firstname || !lastname || !email || !password || !passwordConfirm) {
-            updateErrorMessage('You need to provide information in all fields');
-        } else if (password !== passwordConfirm) {
+            //updateErrorMessage('You need to provide information in all fields');
+            updateErrorMessage('');
+        } else if (!(password === passwordConfirm)) {
             updateErrorMessage('Password and Confirm password must be the same');
+            return;
         }
 
         let info = {
@@ -67,7 +69,6 @@ function SignupComponent() {
 
         let status = 0;
 
-        console.log('about to fetch');
         fetch(`${env.apiUrl}/student`, {
             method: 'POST',
             headers: {
@@ -75,7 +76,6 @@ function SignupComponent() {
             },
             body: JSON.stringify(info)
         }).then(resp => {
-                console.log('fetching...');
                 status = resp.status;
                 return resp.json();
             }).then(payload => {
