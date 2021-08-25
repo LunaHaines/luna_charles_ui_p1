@@ -21,7 +21,6 @@ function SignupComponent() {
 
     function updateFirstname(e) {
         firstname = e.target.value;
-        console.log(firstname);
     }
 
     function updateLastname(e) {
