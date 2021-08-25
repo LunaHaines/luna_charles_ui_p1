@@ -3,9 +3,9 @@ import env from '../../util/env.js';
 import state from '../../util/state.js';
 import router from '../../app.js';
 
-LoginComponent.prototype = new ViewComponent('login');
+StudentLoginComponent.prototype = new ViewComponent('studentlogin');
 
-function LoginComponent() {
+function StudentLoginComponent() {
 
     let emailFieldElement;
     let passwordFieldElement;
@@ -77,14 +77,14 @@ function LoginComponent() {
                     body: JSON.stringify(credentials)
                 });
 
-            if(resp.status === 401) {
-                updateErrorMessage(payload.message);
-                return;
-            }
-
             let token = resp.headers.get('Authorization');
 
             let user = await resp.json();
+
+            if(resp.status === 401) {
+                updateErrorMessage(user.message);
+                return;
+            }
 
             if(user && token){
                 user.token = token;
@@ -100,7 +100,7 @@ function LoginComponent() {
     }
 
     this.render = function() {
-        LoginComponent.prototype.injectTemplate(() => {
+        StudentLoginComponent.prototype.injectTemplate(() => {
             
             emailFieldElement = document.getElementById('login-form-email');
             passwordFieldElement = document.getElementById('login-form-password');
@@ -111,10 +111,10 @@ function LoginComponent() {
             passwordFieldElement.addEventListener('keyup', updatePassword);
             loginButtonElement.addEventListener('click', login);
         });
-        LoginComponent.prototype.injectStylesheet();
+        StudentLoginComponent.prototype.injectStylesheet();
     }
 
 }
 
 
-export default new LoginComponent();
+export default new StudentLoginComponent();
