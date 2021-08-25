@@ -46,28 +46,6 @@ function StudentLoginComponent() {
             password: password
         };
 
-        let status = 0;
-
-        // fetch(`${env.apiUrl}/authstudent`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(credentials)
-        // })
-        //     .then(resp => {
-        //         status = resp.status;
-        //         state.authUser.token = resp.headers.get('Authorization');
-        //         return resp.json();
-        //     })
-        //     .then(payload => {
-        //         if(status === 401){
-        //             updateErrorMessage(payload.message);
-        //         } else {
-        //             state.authUser = payload;
-        //         }
-        //     })
-
         try{
             let resp = await fetch(`${env.apiUrl}/authstudent`, {
                     method: 'POST',
