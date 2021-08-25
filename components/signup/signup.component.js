@@ -21,7 +21,6 @@ function SignupComponent() {
 
     function updateFirstname(e) {
         firstname = e.target.value;
-        console.log(firstname);
     }
 
     function updateLastname(e) {
@@ -67,7 +66,6 @@ function SignupComponent() {
 
         let status = 0;
 
-        console.log('about to fetch');
         fetch(`${env.apiUrl}/student`, {
             method: 'POST',
             headers: {
@@ -75,7 +73,6 @@ function SignupComponent() {
             },
             body: JSON.stringify(info)
         }).then(resp => {
-                console.log('fetching...');
                 status = resp.status;
                 return resp.json();
             }).then(payload => {
