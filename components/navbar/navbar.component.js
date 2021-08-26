@@ -45,6 +45,7 @@ function navbarComponent() {
         injectStyleSheet();
         injectTemplate(() => {
             // TODO add or remove components as needed
+            document.getElementById('home').addEventListener('click', navigateToView)
             document.getElementById('signup').addEventListener('click', navigateToView)
             document.getElementById('logout').addEventListener('click', logout);
             document.getElementById('nav-to-student-login').addEventListener('click', navigateToView);
