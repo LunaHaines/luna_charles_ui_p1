@@ -46,7 +46,7 @@ function FacultyLoginComponent() {
         };
 
         try {
-            let resp = await fetch(`${env.apiUrl}/authfaculty}`, {
+            let resp = await fetch(`${env.apiUrl}/authfaculty`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,19 +73,20 @@ function FacultyLoginComponent() {
         } catch (error) {
             console.error(error);
         }
+    }
+    this.render = function() {
+        FacultyLoginComponent.prototype.injectTemplate(() => {
+            emailFieldElement = document.getElementById('login-form-email');
+            passwordFieldElement = document.getElementById('login-form-password');
+            loginButtonElement = document.getElementById('login-form-button');
+            errorMessageElement = document.getElementById('error-msg');
 
-        this.render = function() {
-            FacultyLoginComponent.prototype.injectTemplate(() => {
-                emailFieldElement = document.getElementById('login-form-email');
-                passwordFieldElement = document.getElementById('login-form-passworn');
-                loginButtonElement = document.getElementById('login-form-button');
-                errorMessageElement = document.getElementById('error-msg');
-
-                emailFieldElement.addEventListener('keyup', updateEmail);
-                passwordFieldElement.addEventListener('keyup', updatePassword);
-                loginButtonElement.addEventListener('click', login);
-            });
-            FacultyLoginComponent.prototype.injectStylesheet();
-        }
+            emailFieldElement.addEventListener('keyup', updateEmail);
+            passwordFieldElement.addEventListener('keyup', updatePassword);
+            loginButtonElement.addEventListener('click', login);
+        });
+        FacultyLoginComponent.prototype.injectStylesheet();
     }
 }
+
+export default new FacultyLoginComponent();

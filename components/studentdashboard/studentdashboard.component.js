@@ -24,8 +24,7 @@ function StudentDashboard() {
 
     async function showInfo() {
         try {
-            let resp = await fetch(`${env.apiUrl}/registration`, {
-                method='GET',
+            let resp = await fetch(`${env.apiUrl}/student`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `${state.authUser.token}`
@@ -33,12 +32,15 @@ function StudentDashboard() {
             });
 
             let queryResult = await resp.json();
-
+            console.log('isArray: ' + Array.isArray(queryResult));
+            
             updateInfo(queryResult);
+        } catch (error) {
+            console.error(error);
         }
     }
 
-    this.render() {
+    this.render = function() {
         StudentDashboard.prototype.injectTemplate(() => {
             infoButtonElement = document.getElementById('student-info-button');
             courseButtonElement = document.getElementById('student-course-button');
@@ -50,6 +52,9 @@ function StudentDashboard() {
             courseButtonElement.addEventListener('click', showCourses);
             registerButtonElement.addEventListener('click', showRegisterForm);
             unregisterButtonElement.addEventListener('click', showUnregisterForm);
-        })
+        });
+        StudentDashboard.prototype.injectStylesheet();
     }
 }
+
+export default new StudentDashboard();

@@ -1,4 +1,5 @@
 import router from '../../app.js';
+import state from '../../util/state.js';
 
 const NAVBAR_ELEMENT = document.getElementById('navbar');
 
@@ -36,9 +37,22 @@ function navbarComponent() {
         router.navigate(e.target.dataset.route);
     }
 
+    function navigateToStudentView(e) {
+        if (state.authUser.role === 'student') {
+            router.navigate(e.target.dataset.route);
+        }
+    }
+
+    function navigateToFacultyView(e) {
+        if (state.authUser.role === 'faculty') {
+            router.navigate(e.target.dataset.route);
+        }
+    }
+
     // TODO implement logout
     function logout() {
-        console.log('logging you out');
+        state.authUser = {};
+        router.navigate('/home');
     }
 
     this.render = function() {
@@ -49,9 +63,9 @@ function navbarComponent() {
             document.getElementById('signup').addEventListener('click', navigateToView)
             document.getElementById('logout').addEventListener('click', logout);
             document.getElementById('nav-to-student-login').addEventListener('click', navigateToView);
-            document.getElementById('nav-to-student-dashboard').addEventListener('click', navigateToView);
+            document.getElementById('nav-to-student-dashboard').addEventListener('click', navigateToStudentView);
             document.getElementById('nav-to-faculty-login').addEventListener('click', navigateToView);
-            document.getElementById('nav-to-faculty-dashboard').addEventListener('click', navigateToView);
+            document.getElementById('nav-to-faculty-dashboard').addEventListener('click', navigateToFacultyView);
         })
     }
 }
