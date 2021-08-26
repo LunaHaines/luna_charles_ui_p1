@@ -1,3 +1,4 @@
+import homeComponent from './components/home/home.component.js';
 import navbarComponent from './components/navbar/navbar.component.js';
 import signupComponent from './components/signup/signup.component.js';
 import studentLoginComponent from './components/studentlogin/studentlogin.component.js';
@@ -17,6 +18,10 @@ let routes = [
     {
         path: '/facultylogin',
         component: facultyLoginComponent
+    },
+    {
+        path: '/home',
+        component: homeComponent
     }
 ];
 
