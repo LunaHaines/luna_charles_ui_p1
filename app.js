@@ -1,6 +1,7 @@
 import navbarComponent from './components/navbar/navbar.component.js';
 import signupComponent from './components/signup/signup.component.js';
-import studentloginComponent from './components/studentlogin/studentlogin.component.js';
+import studentLoginComponent from './components/studentlogin/studentlogin.component.js';
+import facultyLoginComponent from './components/facultylogin/facultylogin.component.js';
 
 import { Router } from './util/router.js';
 
@@ -11,7 +12,11 @@ let routes = [
     },
     {
         path: '/studentlogin',
-        component: studentloginComponent
+        component: studentLoginComponent
+    },
+    {
+        path: '/facultylogin',
+        component: facultyLoginComponent
     }
 ];
 
