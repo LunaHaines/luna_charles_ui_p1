@@ -1,0 +1,23 @@
+<div id="student-dashboard-container">
+    <h1></h1>
+    <button type="button" class="btn btn-secondary" id="student-info-button">Your Courses</button>
+    <button type="button" class="btn btn-secondary" id="student-course-button">All Courses</button>
+    <button type="button" class="btn btn-secondary" id="student-register-button">Register</button>
+    <button type="button" class="btn btn-secondary" id="student-unregister-button">Unregister</button>
+
+    <div id="show-info-container">
+        <p hidden id="student-query-result"></p>
+    </div>
+    <div hidden id="show-form-container">
+        <h1 class="h3 mb-3 fw-normal" id="student-form-heading"></h1>
+
+        <div id="course-number-container" class="form-floating">
+            <input type="text" class="form-control" id="student-course-number" placeholder="course number">
+            <label for="student-course-number">Course Number</label>
+        </div>
+
+        <button id="student-course-registration-button" class="w-100 btn btn-lg btn-primary" type="submit">Submit Form</button>
+
+        <p hidden id="student-success-message"></p>
+    </div>
+</div>
