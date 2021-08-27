@@ -7,9 +7,13 @@ function StudentDashboard() {
 
     let infoButtonElement;
     let courseButtonElement;
-    let registerButtonElement;
-    let unregisterButtonElement;
+    let registerFormButtonElement;
+    let unregisterFormButtonElement;
     let infoContainerElement;
+    let errorMessageElement;
+    let registerButtonElement;
+    let registerFieldElement;
+    let number;
 
     function updateInfo(info) {
         if (info) {
@@ -23,6 +27,7 @@ function StudentDashboard() {
     }
 
     async function showInfo() {
+        hideRegisterForm();
         try {
             let resp = await fetch(`${env.apiUrl}/student`, {
                 headers: {
@@ -73,6 +78,7 @@ function StudentDashboard() {
     }
 
     async function showCourses() {
+        hideRegisterForm();
         try {
             let resp = await fetch(`${env.apiUrl}/registration`, {
                 headers: {
@@ -136,21 +142,74 @@ function StudentDashboard() {
         }
     }
 
+    function updateErrorMessage(errorMessage){
+        if(errorMessage){
+            errorMessageElement.removeAttribute('hidden');
+            errorMessageElement.innerText = errorMessage;
+        } else {
+            errorMessageElement.setAttribute('hidden', 'true');
+            errorMessageElement.innerText = '';
+        }
+    }
 
+    function showRegisterForm() {
+        updateInfo('');
+        document.getElementById('show-form-container').removeAttribute('hidden');
+        document.getElementById('student-course-registration-button').innerText = 'Register';
+    }
+
+    function updateNumber(e) {
+        console.log(number);
+        number = e.target.value;
+    }
+
+    function hideRegisterForm() {
+        document.getElementById('show-form-container').setAttribute('hidden', 'true');
+    }
+
+    async function register() {
+        if (!number) {
+            updateErrorMessage('You must provide a course number');
+            return;
+        }
+        try {
+            let reqBody = {
+                action: 'Register',
+                courseNumber: `${number}`
+            }
+            let resp = await fetch(`${env.apiUrl}/registration`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `${state.authUser.token}`
+                },
+                body: JSON.stringify(reqBody)
+            });
+
+            showInfo();
+        } catch (e) {
+            console.error(e);
+        }
+    }
 
     this.render = function() {
         StudentDashboard.prototype.injectTemplate(() => {
             infoButtonElement = document.getElementById('student-info-button');
             courseButtonElement = document.getElementById('student-course-button');
-            registerButtonElement = document.getElementById('student-register-button');
-            unregisterButtonElement = document.getElementById('student-unregister-button');
+            registerFormButtonElement = document.getElementById('student-register-button');
+            unregisterFormButtonElement = document.getElementById('student-unregister-button');
             infoContainerElement = document.getElementById('show-info-container');
+            registerButtonElement = document.getElementById('student-course-registration-button');
+            registerFieldElement = document.getElementById('student-course-number')
+            errorMessageElement = document.getElementById('error-msg');
 
             showInfo();
 
             infoButtonElement.addEventListener('click', showInfo);
             courseButtonElement.addEventListener('click', showCourses);
-            //registerButtonElement.addEventListener('click', showRegisterForm);
+            registerFormButtonElement.addEventListener('click', showRegisterForm);
+            registerButtonElement.addEventListener('click', register);
+            registerFieldElement.addEventListener('keyup',updateNumber);
             //unregisterButtonElement.addEventListener('click', showUnregisterForm);
         });
         StudentDashboard.prototype.injectStylesheet();
