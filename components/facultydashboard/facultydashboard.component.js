@@ -16,7 +16,7 @@ function FacultyDashboard() {
     let viewCoursesButtonElement;
 
     // add course
-    let addCourseFormElement
+    let addCourseFormElement;
     let courseNumberFieldElement;
     let courseTitleFieldElement;
     let courseDescriptionFieldElement;
@@ -28,21 +28,32 @@ function FacultyDashboard() {
     let addCourseDescription = '';
     let addCourseCapacity = '';
 
+    // remove course
+    let removeCourseFormElement;
+    let removeCourseNumberFieldElement;
+    let removeCourseFormButtonElement;
+    let removeCourseErrorMessageElement;
+    let removeCourseNumber = '';
 
-    function updateCourseNumber(e){
+
+    function updateAddCourseNumber(e){
         addCourseNumber = e.target.value;
     }
 
-    function updateCourseTitle(e){
+    function updateAddCourseTitle(e){
         addCourseTitle = e.target.value;
     }
 
-    function updateCourseDescription(e){
+    function updateAddCourseDescription(e){
         addCourseDescription = e.target.value;
     }
 
-    function updateCourseCapacity(e){
+    function updateAddCourseCapacity(e){
         addCourseCapacity = e.target.value;
+    }
+
+    function updateRemoveCourseNumber(e){
+        removeCourseNumber = e.target.value;
     }
 
     function updateAddCourseErrorMessage(errorMessage){
@@ -52,6 +63,16 @@ function FacultyDashboard() {
         } else {
             addCourseErrorMessageElement.setAttribute('hidden', 'true');
             addCourseErrorMessageElement.innerText = '';
+        }
+    }
+
+    function updateRemoveCourseErrorMessage(errorMessage){
+        if(errorMessage){
+            removeCourseErrorMessageElement.removeAttribute('hidden');
+            removeCourseErrorMessageElement.innerText = errorMessage;
+        } else {
+            removeCourseErrorMessageElement.setAttribute('hidden', 'true');
+            removeCourseErrorMessageElement.innerText = '';
         }
     }
 
@@ -118,16 +139,11 @@ function FacultyDashboard() {
     }
     
     function addCourse(){
-
-        console.log(" checking if fields are blank");
         if(!addCourseNumber || !addCourseTitle || !addCourseDescription || !addCourseCapacity){
             updateAddCourseErrorMessage('You must complete the form');
             return;
         }
         
-        console.log(" successfully passed if statement");
-
-        //UPDATE professor to equal authUser email
         let info = {
             number: addCourseNumber,
             name: addCourseTitle,
@@ -153,12 +169,49 @@ function FacultyDashboard() {
             if(status >= 400){
                 updateAddCourseErrorMessage(payload.message);
             } else {
-                //router.navigate('/facultydashboard');
                 showTaughtCourses();
             }
         }).catch(err => console.error(err));
         
     }
+
+    function showRemoveCourseForm() {
+        addCourseFormElement.removeAttribute('hidden');
+    }
+
+    function removeCourse() {
+        if(!removeCourseNumber){
+            updateRemoveCourseErrorMessage('You must complete the form');
+            return;
+        }
+
+        let status = 0;
+
+        let info = {
+            String: removeCourseNumber
+        }
+
+        fetch(`${env.apiUrl}/course`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${state.authUser.token}`
+            },
+            body: `"${removeCourseNumber}"`
+        }).then(resp => {
+            status = resp.status;
+            return resp.json();
+        }).then(payload => {
+            if(status >= 400){
+                updateAddCourseErrorMessage(payload.message);
+            } else {
+                showTaughtCourses();
+            }
+        }).catch(err => console.error(err));
+        
+    }
+
+
 
     this.render = function() {
         FacultyDashboard.prototype.injectTemplate(() => {
@@ -170,6 +223,7 @@ function FacultyDashboard() {
             coursesContainerElement = document.getElementById('courses-container');
             viewCoursesButtonElement = document.getElementById('faculty-view-courses-button');
 
+            //add course
             addCourseFormElement = document.getElementById('add-course-form')
             courseNumberFieldElement = document.getElementById('add-course-number');
             courseTitleFieldElement = document.getElementById('add-course-title');
@@ -177,16 +231,25 @@ function FacultyDashboard() {
             courseCapacityFieldElement = document.getElementById('add-course-capacity');
             submitCourseButtonElement = document.getElementById('add-course-form-button');
             addCourseErrorMessageElement = document.getElementById('add-course-error-msg');
-                courseNumberFieldElement.addEventListener('keyup', updateCourseNumber);
-                courseTitleFieldElement.addEventListener('keyup', updateCourseTitle);
-                courseDescriptionFieldElement.addEventListener('keyup', updateCourseDescription);
-                courseCapacityFieldElement.addEventListener('keyup', updateCourseCapacity);
+                courseNumberFieldElement.addEventListener('keyup', updateAddCourseNumber);
+                courseTitleFieldElement.addEventListener('keyup', updateAddCourseTitle);
+                courseDescriptionFieldElement.addEventListener('keyup', updateAddCourseDescription);
+                courseCapacityFieldElement.addEventListener('keyup', updateAddCourseCapacity);
 
+            //remove course
+            removeCourseFormElement = document.getElementById('remove-course-form')
+            removeCourseNumberFieldElement = document.getElementById('remove-course-number')
+            removeCourseFormButtonElement = document.getElementById('remove-course-form-button')
+            removeCourseErrorMessageElement = document.getElementById('remove-course-error-msg')
+        
             viewCoursesButtonElement.addEventListener('click', showTaughtCourses);
             addCourseButtonElement.addEventListener('click', showAddCourseForm);
             submitCourseButtonElement.addEventListener('click', addCourse);
-
+            removeCourseButtonElement.addEventListener('click', showRemoveCourseForm);
+            removeCourseFormButtonElement.addEventListener('click', removeCourse);
+                removeCourseNumberFieldElement.addEventListener('keyup', updateRemoveCourseNumber)
         });
+
         FacultyDashboard.prototype.injectStylesheet();
     }
 }

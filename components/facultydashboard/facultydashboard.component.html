@@ -8,7 +8,7 @@
     </div>
 
     <div id="add-course-container">
-        <div id="add-course-form" class="form-add-course">
+        <div id="add-course-form" class="form-add-course" hidden>
             <h1 class="h3 mb-3 fw-normal">Enter Course Details</h1>
     
             <div id="add-course-number-container" class="form-floating">
@@ -43,7 +43,18 @@
     </div>
 
     <div id="remove-course-container">
-        <!-- TODO -->
+        <div id="remove-course-form" class="form-remove-course">
+            <h1 class="h3 mb-3 fw-normal">Enter Course Number</h1>
+            <div id="remove-course-number-container" class="form-floating">
+                <input type="text" class="form-control" id="remove-course-number" placeholder="Number">
+                <label for="remove-course-number">Course Number</label>
+            </div>
+            <button id="remove-course-form-button" class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+        
+        </div>
+        <div id="remove-course-error-msg-container">
+            <p hidden id="remove-course-error-msg" class="alert alert-danger"></p>
+        </div>
     </div>
 
 
