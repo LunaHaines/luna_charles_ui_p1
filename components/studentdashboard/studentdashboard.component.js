@@ -27,6 +27,7 @@ function StudentDashboard() {
     }
 
     async function showInfo() {
+        updateErrorMessage('');
         hideRegisterForm();
         try {
             let resp = await fetch(`${env.apiUrl}/student`, {
@@ -35,6 +36,11 @@ function StudentDashboard() {
                     'Authorization': `${state.authUser.token}`
                 }
             });
+
+            if (resp.status === 404) {
+                updateErrorMessage('The course number you provided is not valid');
+                return;
+            }
 
             let queryResult = await resp.json();
 
@@ -78,6 +84,7 @@ function StudentDashboard() {
     }
 
     async function showCourses() {
+        updateErrorMessage('');
         hideRegisterForm();
         try {
             let resp = await fetch(`${env.apiUrl}/registration`, {
@@ -153,12 +160,14 @@ function StudentDashboard() {
     }
 
     function showRegisterForm() {
+        updateErrorMessage('');
         updateInfo('');
         document.getElementById('show-form-container').removeAttribute('hidden');
         document.getElementById('student-course-registration-button').innerText = 'Register';
     }
 
     function showUnregisterForm() {
+        updateErrorMessage('');
         updateInfo('');
         document.getElementById('show-form-container').removeAttribute('hidden');
         document.getElementById('student-course-registration-button').innerText = 'Unregister'
