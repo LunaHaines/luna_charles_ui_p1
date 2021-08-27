@@ -1,7 +1,6 @@
 import { ViewComponent } from "../view.component.js";
 import env from '../../util/env.js';
 import state from '../../util/state.js';
-import router from '../../app.js';
 
 StudentDashboard.prototype = new ViewComponent('studentdashboard')
 function StudentDashboard() {
@@ -84,7 +83,7 @@ function StudentDashboard() {
 
             let courses = await resp.json();
 
-            newHtml = `
+            let newHtml = `
             <br>
             <h3>Course List</h3>
             <table class="table table-hover">
@@ -99,7 +98,41 @@ function StudentDashboard() {
                         <th scope="col">Registered</th>
                     </tr>
                 </thead>
-                <tbody>`
+                <tbody>`;
+            console.log(courses.length);
+            for (let i = 0; i < courses.length; i++) {
+                if (courses[i].students) {
+                    newHtml += `
+                        <tr>
+                            <th>${i+1}</th>
+                            <td>${courses[i].number}</td>
+                            <td>${courses[i].name}</td>
+                            <td>${courses[i].description}</td>
+                            <td>${courses[i].professor}</td>
+                            <td>${courses[i].capacity}</td>
+                            <td>${courses[i].students.length}</td>
+                        </tr>`
+                } else {
+                    newHtml += `
+                        <tr>
+                            <th>${i+1}</th>
+                            <td>${courses[i].number}</td>
+                            <td>${courses[i].name}</td>
+                            <td>${courses[i].description}</td>
+                            <td>${courses[i].professor}</td>
+                            <td>${courses[i].capacity}</td>
+                            <td>0</td>
+                        </tr>`
+                }
+            }
+
+            newHtml += `
+            </tbody>
+            </table>`
+
+            updateInfo(newHtml);
+        } catch(e) {
+            console.error(e);
         }
     }
 
