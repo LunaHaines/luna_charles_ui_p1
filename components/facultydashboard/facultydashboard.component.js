@@ -1,6 +1,7 @@
 import { ViewComponent } from "../view.component.js";
 import env from '../../util/env.js';
 import state from '../../util/state.js';
+import router from "../../app.js";
 
 FacultyDashboard.prototype = new ViewComponent('facultydashboard')
 function FacultyDashboard() {
@@ -22,6 +23,37 @@ function FacultyDashboard() {
     let courseCapacityFieldElement;
     let submitCourseButtonElement;
     let addCourseErrorMessageElement;
+    let addCourseNumber = '';
+    let addCourseTitle = '';
+    let addCourseDescription = '';
+    let addCourseCapacity = '';
+
+
+    function updateCourseNumber(e){
+        addCourseNumber = e.target.value;
+    }
+
+    function updateCourseTitle(e){
+        addCourseTitle = e.target.value;
+    }
+
+    function updateCourseDescription(e){
+        addCourseDescription = e.target.value;
+    }
+
+    function updateCourseCapacity(e){
+        addCourseCapacity = e.target.value;
+    }
+
+    function updateAddCourseErrorMessage(errorMessage){
+        if(errorMessage){
+            addCourseErrorMessageElement.removeAttribute('hidden');
+            addCourseErrorMessageElement.innerText = errorMessage;
+        } else {
+            addCourseErrorMessageElement.setAttribute('hidden', 'true');
+            addCourseErrorMessageElement.innerText = '';
+        }
+    }
 
     function updateTaughtCoursesInfo(info) {
         if (info) {
@@ -32,7 +64,6 @@ function FacultyDashboard() {
             coursesContainerElement.innerHTML = '';
         }
     }
-
 
     async function showTaughtCourses(){
         try{
@@ -83,6 +114,49 @@ function FacultyDashboard() {
     }
 
     function showAddCourseForm(){
+        addCourseFormElement.removeAttribute('hidden');
+    }
+    
+    function addCourse(){
+
+        console.log(" checking if fields are blank");
+        if(!addCourseNumber || !addCourseTitle || !addCourseDescription || !addCourseCapacity){
+            updateAddCourseErrorMessage('You must complete the form');
+            return;
+        }
+        
+        console.log(" successfully passed if statement");
+
+        //UPDATE professor to equal authUser email
+        let info = {
+            number: addCourseNumber,
+            name: addCourseTitle,
+            description: addCourseDescription,
+            professor: `${state.authUser.email}`,
+            capacity: addCourseCapacity,
+            students: []
+        }
+
+        let status = 0;
+
+        fetch(`${env.apiUrl}/course`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${state.authUser.token}`
+            },
+            body: JSON.stringify(info)
+        }).then(resp => {
+            status = resp.status;
+            return resp.json();
+        }).then(payload => {
+            if(status >= 400){
+                updateAddCourseErrorMessage(payload.message);
+            } else {
+                //router.navigate('/facultydashboard');
+                showTaughtCourses();
+            }
+        }).catch(err => console.error(err));
         
     }
 
@@ -103,11 +177,14 @@ function FacultyDashboard() {
             courseCapacityFieldElement = document.getElementById('add-course-capacity');
             submitCourseButtonElement = document.getElementById('add-course-form-button');
             addCourseErrorMessageElement = document.getElementById('add-course-error-msg');
-
-
+                courseNumberFieldElement.addEventListener('keyup', updateCourseNumber);
+                courseTitleFieldElement.addEventListener('keyup', updateCourseTitle);
+                courseDescriptionFieldElement.addEventListener('keyup', updateCourseDescription);
+                courseCapacityFieldElement.addEventListener('keyup', updateCourseCapacity);
 
             viewCoursesButtonElement.addEventListener('click', showTaughtCourses);
             addCourseButtonElement.addEventListener('click', showAddCourseForm);
+            submitCourseButtonElement.addEventListener('click', addCourse);
 
         });
         FacultyDashboard.prototype.injectStylesheet();
