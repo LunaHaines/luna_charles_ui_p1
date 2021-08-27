@@ -158,8 +158,13 @@ function StudentDashboard() {
         document.getElementById('student-course-registration-button').innerText = 'Register';
     }
 
+    function showUnregisterForm() {
+        updateInfo('');
+        document.getElementById('show-form-container').removeAttribute('hidden');
+        document.getElementById('student-course-registration-button').innerText = 'Unregister'
+    }
+
     function updateNumber(e) {
-        console.log(number);
         number = e.target.value;
     }
 
@@ -173,9 +178,17 @@ function StudentDashboard() {
             return;
         }
         try {
-            let reqBody = {
-                action: 'Register',
-                courseNumber: `${number}`
+            let reqBody;
+            if (document.getElementById('student-course-registration-button').innerText === 'Register') {
+                reqBody = {
+                    action: 'Register',
+                    courseNumber: `${number}`
+                }
+            } else {
+                reqBody = {
+                    action: 'Unregister',
+                    courseNumber: `${number}`
+                }
             }
             let resp = await fetch(`${env.apiUrl}/registration`, {
                 method: 'PUT',
@@ -210,7 +223,7 @@ function StudentDashboard() {
             registerFormButtonElement.addEventListener('click', showRegisterForm);
             registerButtonElement.addEventListener('click', register);
             registerFieldElement.addEventListener('keyup',updateNumber);
-            //unregisterButtonElement.addEventListener('click', showUnregisterForm);
+            unregisterFormButtonElement.addEventListener('click', showUnregisterForm);
         });
         StudentDashboard.prototype.injectStylesheet();
     }
