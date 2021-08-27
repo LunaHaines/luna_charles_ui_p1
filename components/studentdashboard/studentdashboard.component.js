@@ -13,7 +13,7 @@ function StudentDashboard() {
     let errorMessageElement;
     let registerButtonElement;
     let registerFieldElement;
-    let number;
+    let number = '';
 
     function updateInfo(info) {
         if (info) {
