@@ -5,7 +5,47 @@
     <button type="button" class="btn btn-secondary" id="faculty-remove-course-button">Remove Class</button>
 
     <div id="courses-container">
-        
-
+        <!-- TODO -->
     </div>
+
+    <div id="add-course-container">
+        <div id="add-course-form" class="form-add-course" hidden>
+            <h1 class="h3 mb-3 fw-normal">Enter Course Details</h1>
+    
+            <div id="add-course-number-container" class="form-floating">
+                <input type="text" class="form-control" id="add-course-number" placeholder="Number">
+                <label for="add-course-number">Course Number</label>
+            </div>
+    
+            <div id="add-course-title-container" class="form-floating">
+                <input type="text" class="form-control" id="add-course-title" placeholder="Title">
+                <label for="add-course-title">Course Title</label>
+            </div>
+
+            <div id="add-course-description-container" class="form-floating">
+                <input type="text" class="form-control" id="add-course-description" placeholder="Description">
+                <label for="add-course-description">Course Description</label>
+            </div>
+
+            <div id="add-course-capacity-container" class="form-floating">
+                <input type="text" class="form-control" id="add-course-capacity" placeholder="Capacity">
+                <label for="add-course-capacity">Course Capacity</label>
+            </div>
+    
+            <button id="add-course-form-button" class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+        </div>
+        <div id="add-course-error-msg-container">
+            <p hidden id="add-course-error-msg" class="alert alert-danger"></p>
+        </div>
+    </div>
+
+    <div id="edit-course-container">
+        <!-- TODO -->
+    </div>
+
+    <div id="remove-course-container">
+        <!-- TODO -->
+    </div>
+
+
 </div>

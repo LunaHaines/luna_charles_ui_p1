@@ -10,6 +10,15 @@ function FacultyDashboard() {
     let editCourseButtonElement;
     let removeCourseButtonElement;
 
+    // add course
+    let courseNumberFieldElement;
+    let courseTitleFieldElement;
+    let courseDescriptionFieldElement;
+    let courseCapacityFieldElement;
+    let submitCourseButtonElement;
+    let addCourseErrorMessageElement;
+
+
     async function showInfo(){
         try{
             let resp = await fetch(`${env.apiUrl}/course`, {
@@ -31,9 +40,15 @@ function FacultyDashboard() {
             addCourseButtonElement = document.getElementById('faculty-add-course-button');
             editCourseButtonElement = document.getElementById('faculty-edit-course-button');
             removeCourseButtonElement = document.getElementById('faculty-remove-course-button');
+            
+            courseNumberFieldElement = document.getElementById('add-course-number');
+            courseTitleFieldElement = document.getElementById('add-course-title');
+            courseDescriptionFieldElement = document.getElementById('add-course-description');
+            courseCapacityFieldElement = document.getElementById('add-course-capacity');
+            submitCourseButtonElement = document.getElementById('add-course-form-button');
+            addCourseErrorMessageElement = document.getElementById('add-course-error-msg');
 
-
-            viewCourseButtonElement.addEventListener('click', showInfo);
+            addCourseButtonElement.addEventListener('click', showInfo);
 
         });
         FacultyDashboard.prototype.injectStylesheet();
