@@ -2,15 +2,20 @@ import router from '../../app.js';
 import state from '../../util/state.js';
 
 const NAVBAR_ELEMENT = document.getElementById('navbar');
-
+// logic for the navbar lives here
 function navbarComponent() {
 
+    // declare variable to put HTML template in
     let templateHolder = '';
+    // a fragment that will be reference multiple times later
     let frag = 'components/navbar/navbar.component';
 
+    // instructions for getting the template onto the page
     function injectTemplate(callback) {
+        // if there's a template in templateHolder then set the innerHTML to that
         if (templateHolder) {
             NAVBAR_ELEMENT.innerHTML = templateHolder;
+        // if there isn't a template, grab the appropriate one and use that
         } else {
             fetch(`${frag}.html`)
                 .then(resp => resp.text())
@@ -23,6 +28,7 @@ function navbarComponent() {
         }
     }
 
+    // set up dynamic css
     function injectStyleSheet() {
         let dynamicStyle = document.getElementById('nav-css')
         if (dynamicStyle) dynamicStyle.remove();
@@ -33,23 +39,26 @@ function navbarComponent() {
         document.head.appendChild(dynamicStyle);
     }
     
+    // uses the router to navigate between pages from the navbar
     function navigateToView(e) {
         router.navigate(e.target.dataset.route);
     }
 
+    // navigates to the student dashboard after checking that a student is logged in
     function navigateToStudentView(e) {
         if (state.authUser.role === 'student') {
             router.navigate(e.target.dataset.route);
         }
     }
 
+    // navigates to the faculty dashboard after checking that a faculty is logged in
     function navigateToFacultyView(e) {
         if (state.authUser.role === 'faculty') {
             router.navigate(e.target.dataset.route);
         }
     }
 
-    // TODO implement logout
+    // sets the authUser to an empty object and navigates them to the home page
     function logout() {
         state.authUser = {};
         router.navigate('/home');
@@ -58,7 +67,7 @@ function navbarComponent() {
     this.render = function() {
         injectStyleSheet();
         injectTemplate(() => {
-            // TODO add or remove components as needed
+            // add event listeners to the appropriate documents (i.e. 'click home: go to /home')
             document.getElementById('home').addEventListener('click', navigateToView)
             document.getElementById('signup').addEventListener('click', navigateToView)
             document.getElementById('logout').addEventListener('click', logout);

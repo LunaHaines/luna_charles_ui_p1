@@ -1,3 +1,4 @@
+// constants that are used multiple times and/or may need to change
 const APP_ROOT = document.getElementById('app-root');
 
 export default {

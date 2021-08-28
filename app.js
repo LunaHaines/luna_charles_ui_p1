@@ -7,6 +7,7 @@ import studentdashboardComponent from './components/studentdashboard/studentdash
 
 import { Router } from './util/router.js';
 
+// Set up routes for navigating through later
 let routes = [
     {
         path: '/signup',

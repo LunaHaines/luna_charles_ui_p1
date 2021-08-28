@@ -1,5 +1,6 @@
 import env from '../util/env.js'
 
+// ViewComponent is the prototype of our other components and defines methods used when rendering
 export function ViewComponent(viewName) {
 
     let templateHolder = '';
@@ -12,6 +13,7 @@ export function ViewComponent(viewName) {
         stylesheetUri: `${frag}.css`,
     };
 
+    // called in render() method of other components, injects the appropriate html template into the DOM
     this.injectTemplate = function (cb) {
         if (templateHolder) {
             console.log(`Already fetch ${viewName} template, using internally store templateHolder.`);
@@ -30,6 +32,7 @@ export function ViewComponent(viewName) {
         }
     }
 
+    // similar to injectTemplate(), allows for dynamic css
     this.injectStylesheet = function() {
         let stylesheet = document.getElementById('dynamic-css');
         if (stylesheet) stylesheet.remove();
