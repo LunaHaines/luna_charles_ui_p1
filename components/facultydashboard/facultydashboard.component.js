@@ -246,6 +246,10 @@ function FacultyDashboard() {
             updateAddCourseErrorMessage('You must complete the form');
             return;
         }
+        if (!Number.isInteger(addCourseCapacity)) {
+            updateAddCourseErrorMessage('the capacity of the course must be a number')
+            return;
+        }
         
         let info = {
             number: addCourseNumber,
