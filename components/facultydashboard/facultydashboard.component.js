@@ -6,14 +6,13 @@ import router from "../../app.js";
 FacultyDashboard.prototype = new ViewComponent('facultydashboard')
 function FacultyDashboard() {
 
-    let viewCourseButtonElement;
+    let viewCoursesButtonElement;
     let addCourseButtonElement;
     let editCourseButtonElement;
     let removeCourseButtonElement;
 
     //view courses
     let coursesContainerElement;
-    let viewCoursesButtonElement;
 
     // add course
     let addCourseFormElement;
@@ -124,6 +123,11 @@ function FacultyDashboard() {
 
     async function showTaughtCourses(){
 
+        viewCoursesButtonElement.setAttribute('class', 'btn btn-primary');
+        addCourseButtonElement.setAttribute('class', 'btn btn-secondary');
+        editCourseButtonElement.setAttribute('class', 'btn btn-secondary');
+        removeCourseButtonElement.setAttribute('class', 'btn btn-secondary');
+
         coursesContainerElement.removeAttribute('hidden');
         addCourseFormElement.setAttribute('hidden', 'true');
         editCourseFormElement.setAttribute('hidden', 'true');
@@ -182,6 +186,12 @@ function FacultyDashboard() {
     }
 
     function showAddCourseForm(){
+
+        viewCoursesButtonElement.setAttribute('class', 'btn btn-secondary');
+        addCourseButtonElement.setAttribute('class', 'btn btn-primary');
+        editCourseButtonElement.setAttribute('class', 'btn btn-secondary');
+        removeCourseButtonElement.setAttribute('class', 'btn btn-secondary');
+
         addCourseFormElement.removeAttribute('hidden');
         editCourseFormElement.setAttribute('hidden', 'true');
         removeCourseFormElement.setAttribute('hidden', 'true');
@@ -195,6 +205,12 @@ function FacultyDashboard() {
     }
 
     function showEditForm(){
+
+        viewCoursesButtonElement.setAttribute('class', 'btn btn-secondary');
+        addCourseButtonElement.setAttribute('class', 'btn btn-secondary');
+        editCourseButtonElement.setAttribute('class', 'btn btn-primary');
+        removeCourseButtonElement.setAttribute('class', 'btn btn-secondary');
+
         editCourseFormElement.removeAttribute('hidden');
         addCourseFormElement.setAttribute('hidden', 'true');
         removeCourseFormElement.setAttribute('hidden', 'true');
@@ -208,13 +224,17 @@ function FacultyDashboard() {
     }
 
     function showRemoveCourseForm() {
+        
+        viewCoursesButtonElement.setAttribute('class', 'btn btn-secondary');
+        addCourseButtonElement.setAttribute('class', 'btn btn-secondary');
+        editCourseButtonElement.setAttribute('class', 'btn btn-secondary');
+        removeCourseButtonElement.setAttribute('class', 'btn btn-primary');
+
         removeCourseFormElement.removeAttribute('hidden');
         addCourseFormElement.setAttribute('hidden', 'true');
         editCourseFormElement.setAttribute('hidden', 'true');
         coursesContainerElement.setAttribute('hidden', 'true');
 
-
-        
         addCourseErrorMessageElement.setAttribute('hidden', 'true');
         editCourseErrorMessageElement.setAttribute('hidden', 'true');
         removeCourseErrorMessageElement.setAttribute('hidden', 'true');
