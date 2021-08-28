@@ -123,6 +123,15 @@ function FacultyDashboard() {
 
 
     async function showTaughtCourses(){
+
+        coursesContainerElement.removeAttribute('hidden');
+        addCourseFormElement.setAttribute('hidden', 'true');
+        editCourseFormElement.setAttribute('hidden', 'true');
+        removeCourseFormElement.setAttribute('hidden', 'true');
+        addCourseErrorMessageElement.setAttribute('hidden', 'true');
+        editCourseErrorMessageElement.setAttribute('hidden', 'true');
+        removeCourseErrorMessageElement.setAttribute('hidden', 'true');
+
         try{
             let resp = await fetch(`${env.apiUrl}/course`, {
                 headers: {
@@ -172,14 +181,25 @@ function FacultyDashboard() {
 
     function showAddCourseForm(){
         addCourseFormElement.removeAttribute('hidden');
+        editCourseFormElement.setAttribute('hidden', 'true');
+        removeCourseFormElement.setAttribute('hidden', 'true');
+        coursesContainerElement.setAttribute('hidden', 'true');
     }
 
     function showEditForm(){
         editCourseFormElement.removeAttribute('hidden');
+        addCourseFormElement.setAttribute('hidden', 'true');
+        removeCourseFormElement.setAttribute('hidden', 'true');
+        coursesContainerElement.setAttribute('hidden', 'true');
+
     }
 
     function showRemoveCourseForm() {
-        addCourseFormElement.removeAttribute('hidden');
+        removeCourseFormElement.removeAttribute('hidden');
+        addCourseFormElement.setAttribute('hidden', 'true');
+        editCourseFormElement.setAttribute('hidden', 'true');
+        coursesContainerElement.setAttribute('hidden', 'true');
+
     }
     
     function addCourse(){
@@ -228,7 +248,7 @@ function FacultyDashboard() {
         let info = {
             currentNumber: editCourseNumber,
             field: editCourseField,
-            newValue: editCourseValue
+            newValue : editCourseValue
         }
 
         let status = 0;
@@ -287,21 +307,21 @@ function FacultyDashboard() {
             coursesContainerElement = document.getElementById('courses-container');
             
             viewCoursesButtonElement = document.getElementById('faculty-view-courses-button');
-                viewCoursesButtonElement.addEventListener('click', showTaughtCourses);
+            viewCoursesButtonElement.addEventListener('click', showTaughtCourses);
                 
             editCourseButtonElement = document.getElementById('faculty-edit-course-button');
-                editCourseButtonElement.addEventListener('click', showEditForm);
+            editCourseButtonElement.addEventListener('click', showEditForm);
 
             addCourseButtonElement = document.getElementById('faculty-add-course-button');
-                addCourseButtonElement.addEventListener('click', showAddCourseForm);
+            addCourseButtonElement.addEventListener('click', showAddCourseForm);
 
             removeCourseButtonElement = document.getElementById('faculty-remove-course-button');
-                removeCourseButtonElement.addEventListener('click', showRemoveCourseForm);
+            removeCourseButtonElement.addEventListener('click', showRemoveCourseForm);
 
 
 
             //add course
-            addCourseFormElement = document.getElementById('add-course-form')
+            addCourseFormElement = document.getElementById('add-course-form');
             addCourseNumberFieldElement = document.getElementById('add-course-number');
             addCourseTitleFieldElement = document.getElementById('add-course-title');
             addCourseDescriptionFieldElement = document.getElementById('add-course-description');
@@ -316,20 +336,20 @@ function FacultyDashboard() {
             addSubmitCourseButtonElement.addEventListener('click', addCourse);
 
             //remove course
-            removeCourseFormElement = document.getElementById('remove-course-form')
-            removeCourseNumberFieldElement = document.getElementById('remove-course-number')
-            removeCourseFormButtonElement = document.getElementById('remove-course-form-button')
-            removeCourseErrorMessageElement = document.getElementById('remove-course-error-msg')
+            removeCourseFormElement = document.getElementById('remove-course-form');
+            removeCourseNumberFieldElement = document.getElementById('remove-course-number');
+            removeCourseFormButtonElement = document.getElementById('remove-course-form-button');
+            removeCourseErrorMessageElement = document.getElementById('remove-course-error-msg');
             removeCourseFormButtonElement.addEventListener('click', removeCourse);
-            removeCourseNumberFieldElement.addEventListener('keyup', updateRemoveCourseNumber)
+            removeCourseNumberFieldElement.addEventListener('keyup', updateRemoveCourseNumber);
 
             //edit courses
-            let editCourseFormElement = document.getElementById('edit-course-form');
-            let editCourseNumberElement = document.getElementById('edit-course-number');
-            let editCourseFieldElement = document.getElementById('edit-course-field');
-            let editCourseValueElement = document.getElementById('edit-course-value');
-            let editCourseFormButtonElement = document.getElementById('edit-course-form-button');
-            let editCourseErrorMessageElement = document.getElementById('edit-course-error-msg');
+            editCourseFormElement = document.getElementById('edit-course-form');
+            editCourseNumberElement = document.getElementById('edit-course-number');
+            editCourseFieldElement = document.getElementById('edit-course-field');
+            editCourseValueElement = document.getElementById('edit-course-value');
+            editCourseFormButtonElement = document.getElementById('edit-course-form-button');
+            editCourseErrorMessageElement = document.getElementById('edit-course-error-msg');
             editCourseNumberElement.addEventListener('keyup', updateEditCourseNumber);
             editCourseFieldElement.addEventListener('blur', updateEditCourseField);
             editCourseValueElement.addEventListener('keyup', updateEditCourseValue);
