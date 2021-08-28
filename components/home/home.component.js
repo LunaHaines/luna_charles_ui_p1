@@ -3,18 +3,16 @@ import { ViewComponent } from "../view.component.js";
 
 
 homeComponent.prototype = new ViewComponent('home')
+// basic javascript for the home component
 function homeComponent() {
 
 
     this.render = function() {
-
-        homeComponent.prototype.injectTemplate(() => {
-
-        });
+        // render contains necessary functions
+        homeComponent.prototype.injectTemplate(() => {});
 
         homeComponent.prototype.injectStylesheet();
     }
-
 
 }
 

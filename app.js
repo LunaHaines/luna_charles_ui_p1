@@ -8,6 +8,7 @@ import facultydashboardComponent from './components/facultydashboard/facultydash
 
 import { Router } from './util/router.js';
 
+// Set up routes for navigating through later
 let routes = [
     {
         path: '/signup',
