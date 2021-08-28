@@ -148,6 +148,7 @@ function FacultyDashboard() {
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th scope="col">#</th>
                                 <th scope="col">Number</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Description</th>
@@ -159,6 +160,7 @@ function FacultyDashboard() {
                         for(let i = 0; i < queryResult.length; i++){
                             newHTML += `
                                 <tr>
+                                    <th>${i+1}</th>
                                     <td>${queryResult[i].number}</td>
                                     <td>${queryResult[i].name}</td>
                                     <td>${queryResult[i].description}</td>
@@ -184,6 +186,12 @@ function FacultyDashboard() {
         editCourseFormElement.setAttribute('hidden', 'true');
         removeCourseFormElement.setAttribute('hidden', 'true');
         coursesContainerElement.setAttribute('hidden', 'true');
+
+        
+        addCourseErrorMessageElement.setAttribute('hidden', 'true');
+        editCourseErrorMessageElement.setAttribute('hidden', 'true');
+        removeCourseErrorMessageElement.setAttribute('hidden', 'true');
+
     }
 
     function showEditForm(){
@@ -191,6 +199,11 @@ function FacultyDashboard() {
         addCourseFormElement.setAttribute('hidden', 'true');
         removeCourseFormElement.setAttribute('hidden', 'true');
         coursesContainerElement.setAttribute('hidden', 'true');
+
+        
+        addCourseErrorMessageElement.setAttribute('hidden', 'true');
+        editCourseErrorMessageElement.setAttribute('hidden', 'true');
+        removeCourseErrorMessageElement.setAttribute('hidden', 'true');
 
     }
 
@@ -200,6 +213,12 @@ function FacultyDashboard() {
         editCourseFormElement.setAttribute('hidden', 'true');
         coursesContainerElement.setAttribute('hidden', 'true');
 
+
+        
+        addCourseErrorMessageElement.setAttribute('hidden', 'true');
+        editCourseErrorMessageElement.setAttribute('hidden', 'true');
+        removeCourseErrorMessageElement.setAttribute('hidden', 'true');
+        
     }
     
     function addCourse(){
