@@ -1,14 +1,26 @@
 <div id="faculty-dashboard-container">
-    <button type="button" class="btn btn-secondary" id="faculty-view-courses-button">View Taught Courses</button>
-    <button type="button" class="btn btn-secondary" id="faculty-add-course-button">Add Course</button>
-    <button type="button" class="btn btn-secondary" id="faculty-edit-course-button">Change Course Details</button>
-    <button type="button" class="btn btn-secondary" id="faculty-remove-course-button">Remove Class</button>
-
-    <div id="courses-container">
+    <div id="button-container" class="row">
+        <div class="col">
+            <button type="button" class="btn btn-secondary" id="faculty-view-courses-button">View Taught Courses</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-secondary" id="faculty-add-course-button">Add Course</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-secondary" id="faculty-edit-course-button">Change Course Details</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-secondary" id="faculty-remove-course-button">Remove Class</button>
+        </div>
     </div>
 
-    <div id="add-course-container">
-        <div hidden id="add-course-form" class="form-add-course">
+    <div id="courses-container-container" >
+        <br>
+        <div id="courses-container"></div>
+    </div>
+
+    <div id="add-course-container" class="row justify-content-center">
+        <div hidden id="add-course-form" class="form-add-course col-6">
             
             <br>
             <h1 class="h3 mb-3 fw-normal">Enter Course Details</h1>
@@ -34,14 +46,16 @@
             <br>
             <button id="add-course-form-button" class="w-100 btn btn-lg btn-success" type="submit">Add Course</button>
         </div>
-        <div id="add-course-error-msg-container">
-            <br>
-            <p hidden id="add-course-error-msg" class="alert alert-danger"></p>
+        <div class="row justify-content-center">
+            <div id="add-course-error-msg-container" class="col-6">
+                <br>
+                <p hidden id="add-course-error-msg" class="alert alert-danger"></p>
+            </div>
         </div>
     </div>
 
-    <div id="edit-course-container">
-        <div hidden id="edit-course-form" class="form-edit-course">
+    <div id="edit-course-container" class="row justify-content-center">
+        <div hidden id="edit-course-form" class="form-edit-course col-6">
 
             <br>
             <h1 class="h3 mb-3 fw-normal">Update Course Details</h1>
@@ -66,14 +80,16 @@
             <br>
             <button id="edit-course-form-button" class="w-100 btn btn-lg btn-warning" type="submit">Update Course</button>
         </div>
-        <div id="edit-course-error-msg-container">
-            <br>
-            <p hidden id="edit-course-error-msg" class="alert alert-danger"></p>
+        <div class="row justify-content-center">
+            <div id="edit-course-error-msg-container" class="col-6">
+                <br>
+                <p hidden id="edit-course-error-msg" class="alert alert-danger"></p>
+            </div>
         </div>
     </div>
     
-    <div id="remove-course-container">
-        <div hidden id="remove-course-form" class="form-remove-course">
+    <div id="remove-course-container" class="row justify-content-center">
+        <div hidden id="remove-course-form" class="form-remove-course col-6">
             <br>
             <h1 class="h3 mb-3 fw-normal">Enter Course Number</h1>
             <div id="remove-course-number-container" class="form-floating">
@@ -84,9 +100,12 @@
             <button id="remove-course-form-button" class="w-100 btn btn-lg btn-danger" type="submit">Delete Course</button>
         
         </div>
-        <div id="remove-course-error-msg-container">
-            <br>
-            <p hidden id="remove-course-error-msg" class="alert alert-danger"></p>
+        
+        <div class="row justify-content-center">
+            <div id="remove-course-error-msg-container" class="col-6">
+                <br>
+                <p hidden id="remove-course-error-msg" class="alert alert-danger"></p>
+            </div>
         </div>
     </div>
 
