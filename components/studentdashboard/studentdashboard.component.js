@@ -7,6 +7,7 @@ StudentDashboard.prototype = new ViewComponent('studentdashboard')
 function StudentDashboard() {
 
     // declare variables used to access elements in the DOM
+    let studentEmailElement;
     let infoButtonElement;
     let courseButtonElement;
     let registerFormButtonElement;
@@ -18,6 +19,11 @@ function StudentDashboard() {
 
     // declare a variable to store course number input for register/unregister
     let number = '';
+
+    // shows a welcome message
+    function showWelcome() {
+        studentEmailElement.innerText = `${state.authUser.email}`
+    }
 
     // updates the information shown to the user from the API
     function updateInfo(info) {
@@ -248,6 +254,7 @@ function StudentDashboard() {
     this.render = function() {
         StudentDashboard.prototype.injectTemplate(() => {
             // get the field elements and assign them to appropriate variables
+            studentEmailElement = document.getElementById('profile-email')
             infoButtonElement = document.getElementById('student-info-button');
             courseButtonElement = document.getElementById('student-course-button');
             registerFormButtonElement = document.getElementById('student-register-button');
@@ -256,6 +263,8 @@ function StudentDashboard() {
             registerButtonElement = document.getElementById('student-course-registration-button');
             registerFieldElement = document.getElementById('student-course-number')
             errorMessageElement = document.getElementById('error-msg');
+            // show the welcome message with personal email
+            showWelcome();
             // show the student their info upon login
             showInfo();
             // add event listeners to track user input and respond to it
