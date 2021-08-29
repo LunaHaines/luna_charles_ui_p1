@@ -1,0 +1,116 @@
+<div id="faculty-dashboard-container">
+
+    <div id="profile-info-container" class="row justify-content-center">
+        <div id="profile-picture" class="col-3">
+            <img src="../../components/facultydashboard/facultyIcon.png" alt="faculty icon" />
+        </div>
+        <div id="profile-info" class="col-3">
+
+        </div>
+        <br>
+    </div>
+    <div id="button-container" class="row justify-content-center">
+        <div class="col-6">
+            <button type="button" class="btn btn-secondary" id="faculty-view-courses-button">View Taught Courses</button>
+            <button type="button" class="btn btn-secondary" id="faculty-add-course-button">Add Course</button>
+            <button type="button" class="btn btn-secondary" id="faculty-edit-course-button">Change Course Details</button>
+            <button type="button" class="btn btn-secondary" id="faculty-remove-course-button">Remove Class</button>
+        </div>
+    </div>
+
+    <div id="courses-container-container" >
+        <br>
+        <div id="courses-container"></div>
+    </div>
+
+    <div id="add-course-container" class="row justify-content-center">
+        <div hidden id="add-course-form" class="form-add-course col-6">
+            
+            <br>
+            <h1 class="h3 mb-3 fw-normal">Enter Course Details</h1>
+            <div id="add-course-number-container" class="form-floating">
+                <input type="text" class="form-control" id="add-course-number" placeholder="Number">
+                <label for="add-course-number">Course Number</label>
+            </div>
+    
+            <div id="add-course-title-container" class="form-floating">
+                <input type="text" class="form-control" id="add-course-title" placeholder="Title">
+                <label for="add-course-title">Course Title</label>
+            </div>
+
+            <div id="add-course-description-container" class="form-floating">
+                <input type="text" class="form-control" id="add-course-description" placeholder="Description">
+                <label for="add-course-description">Course Description</label>
+            </div>
+
+            <div id="add-course-capacity-container" class="form-floating">
+                <input type="text" class="form-control" id="add-course-capacity" placeholder="Capacity">
+                <label for="add-course-capacity">Course Capacity</label>
+            </div>
+            <br>
+            <button id="add-course-form-button" class="w-100 btn btn-lg btn-success" type="submit">Add Course</button>
+        </div>
+        <div class="row justify-content-center">
+            <div id="add-course-error-msg-container" class="col-6">
+                <br>
+                <p hidden id="add-course-error-msg" class="alert alert-danger"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-course-container" class="row justify-content-center">
+        <div hidden id="edit-course-form" class="form-edit-course col-6">
+
+            <br>
+            <h1 class="h3 mb-3 fw-normal">Update Course Details</h1>
+            
+            
+            <div id="edit-course-number-container" class="form-floating">
+                <select class="form-control" id="edit-course-number">
+                </select>
+            </div>
+    
+            <div id="edit-course-field-container" class="form-floating">
+                <select class="form-control" id="edit-course-field">
+                    <option>number</option>
+                    <option>name</option>
+                    <option>description</option>
+                    <option>capacity</option>
+                </select>
+            </div>
+
+            <div id="edit-course-value-container" class="form-floating">
+                <input type="text" class="form-control" id="edit-course-value" placeholder="Capacity">
+                <label for="edit-course-value">New Value</label>
+            </div>
+            <br>
+            <button id="edit-course-form-button" class="w-100 btn btn-lg btn-warning" type="submit">Update Course</button>
+        </div>
+        <div class="row justify-content-center">
+            <div id="edit-course-error-msg-container" class="col-6">
+                <br>
+                <p hidden id="edit-course-error-msg" class="alert alert-danger"></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="remove-course-container" class="row justify-content-center">
+        <div hidden id="remove-course-form" class="form-remove-course col-6">
+            <br>
+            <h1 class="h3 mb-3 fw-normal">Enter Course Number</h1>
+            <div id="remove-course-number-container" class="form-floating">
+                <select class="form-control" id="remove-course-number">
+                </select>
+            </div>
+            <br>
+            <button id="remove-course-form-button" class="w-100 btn btn-lg btn-danger" type="submit">Delete Course</button>
+        </div>
+        <div class="row justify-content-center">
+            <div id="remove-course-error-msg-container" class="col-6">
+                <br>
+                <p hidden id="remove-course-error-msg" class="alert alert-danger"></p>
+            </div>
+        </div>
+    </div>
+
+</div>
