@@ -433,6 +433,7 @@ function FacultyDashboard() {
             editCourseValueElement.addEventListener('keyup', updateEditCourseValue);
             editCourseFormButtonElement.addEventListener('click', editCourse);
 
+            showTaughtCourses();
 
         });
 
