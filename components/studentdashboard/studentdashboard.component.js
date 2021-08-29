@@ -185,6 +185,8 @@ function StudentDashboard() {
 
     // this function shows the register form, allowing the user to enter a course number and click 'Register'
     function showRegisterForm() {
+        // reset the input field
+        registerFieldElement.value = '';
         updateErrorMessage('');
         updateInfo('');
         document.getElementById('show-form-container').removeAttribute('hidden');
@@ -193,6 +195,8 @@ function StudentDashboard() {
 
     // this function shows the unregister form, allowing the user to enter a course number and click 'Unregister'
     function showUnregisterForm() {
+        // reset the input field
+        registerFieldElement.value = '';
         updateErrorMessage('');
         updateInfo('');
         document.getElementById('show-form-container').removeAttribute('hidden');
