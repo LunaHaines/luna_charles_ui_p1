@@ -280,7 +280,7 @@ function FacultyDashboard() {
             updateAddCourseErrorMessage('You must complete the form');
             return;
         }
-        if (parseInt(addCourseCapacity)) {
+        if (isNaN(addCourseCapacity)) {
             updateAddCourseErrorMessage('The capacity of the course must be a number')
             return;
         }
