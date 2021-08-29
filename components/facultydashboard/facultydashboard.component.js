@@ -53,6 +53,15 @@ function FacultyDashboard() {
     //declaring variable for element in the DOM for displaying email address on dashboard
     let profileEmailElement = '';
 
+    //clears input fields
+    function clearInputs() {
+        addCourseNumberFieldElement.value = '';
+        addCourseTitleFieldElement.value = '';
+        addCourseDescriptionFieldElement.value = '';
+        addCourseCapacityFieldElement.value = '';
+        editCourseValueElement.value = '';
+    }
+
     //function for updating the Course Number in the Add Course form
     function updateAddCourseNumber(e){
         addCourseNumber = e.target.value;
@@ -247,6 +256,8 @@ function FacultyDashboard() {
     //function to display the Add Course form
     function showAddCourseForm(){
 
+        clearInputs();
+
         //update all of the button's colors upon clicking the Add Course button
         viewCoursesButtonElement.setAttribute('class', 'btn btn-secondary');
         addCourseButtonElement.setAttribute('class', 'btn btn-primary');
@@ -269,6 +280,8 @@ function FacultyDashboard() {
     
     //function to display the Update Course form
     function showEditForm(){
+
+        clearInputs();
 
         //declare newHTML; will be populated with elements from the taught courses array wrapped in options tags
         let newHTML = ``;
