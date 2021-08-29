@@ -16,11 +16,9 @@ export function ViewComponent(viewName) {
     // called in render() method of other components, injects the appropriate html template into the DOM
     this.injectTemplate = function (cb) {
         if (templateHolder) {
-            console.log(`Already fetch ${viewName} template, using internally store templateHolder.`);
             env.rootDiv.innerHTML = templateHolder;
             cb();
         } else {
-            console.log(`First time fetching ${viewName} template!`)
             fetch(this.viewMetadata.templateUri)
                 .then(resp => resp.text())
                 .then(html => {
