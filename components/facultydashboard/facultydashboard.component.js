@@ -46,6 +46,7 @@ function FacultyDashboard() {
     let editCourseValue = '';
 
     let query = '';
+    let profileEmailElement = '';
 
     
     function updateAddCourseNumber(e){
@@ -137,6 +138,14 @@ function FacultyDashboard() {
         }
     }
 
+    function updateProfileData(info) {
+        if(info){
+            profileEmailElement.innerHTML = info;
+        } else {
+            editCourseButtonElement.innerHTML = '';
+        }
+    }
+
 
     async function showTaughtCourses(){
 
@@ -197,6 +206,10 @@ function FacultyDashboard() {
                     `
 
             updateTaughtCoursesInfo(newHTML);
+
+            newHTML = `${state.authUser.email}`
+
+            updateProfileData(newHTML);
 
         } catch (error) {
             console.error(error);
@@ -332,7 +345,7 @@ function FacultyDashboard() {
         let status = 0;
 
         console.log(info);
-        
+
         fetch(`${env.apiUrl}/course`, {
             method: 'PUT',
             headers: {
@@ -434,6 +447,8 @@ function FacultyDashboard() {
             editCourseFieldElement.addEventListener('blur', updateEditCourseField);
             editCourseValueElement.addEventListener('keyup', updateEditCourseValue);
             editCourseFormButtonElement.addEventListener('click', editCourse);
+
+            profileEmailElement = document.getElementById('profile-email');
 
             showTaughtCourses();
 
