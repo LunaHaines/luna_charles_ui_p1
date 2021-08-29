@@ -247,7 +247,7 @@ function FacultyDashboard() {
             return;
         }
         if (isNaN(addCourseCapacity)) {
-            updateAddCourseErrorMessage('the capacity of the course must be a number')
+            updateAddCourseErrorMessage('The capacity of the course must be a number')
             return;
         }
 
@@ -334,10 +334,10 @@ function FacultyDashboard() {
             body: `"${removeCourseNumber}"`
         }).then(resp => {
             status = resp.status;
-            return resp.json();
+            return resp;
         }).then(payload => {
             if(status >= 400){
-                updateAddCourseErrorMessage(payload.message);
+                updateRemoveCourseErrorMessage(payload.message);
             } else {
                 showTaughtCourses();
             }
