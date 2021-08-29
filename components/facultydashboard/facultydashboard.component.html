@@ -53,9 +53,11 @@
 
             <br>
             <h1 class="h3 mb-3 fw-normal">Update Course Details</h1>
+            
+            
             <div id="edit-course-number-container" class="form-floating">
-                <input type="text" class="form-control" id="edit-course-number" placeholder="Number">
-                <label for="edit-course-number">Course Number</label>
+                <select class="form-control" id="edit-course-number">
+                </select>
             </div>
     
             <div id="edit-course-field-container" class="form-floating">
@@ -64,8 +66,8 @@
                     <option>name</option>
                     <option>description</option>
                     <option>capacity</option>
-                  </select>
-                </div>
+                </select>
+            </div>
 
             <div id="edit-course-value-container" class="form-floating">
                 <input type="text" class="form-control" id="edit-course-value" placeholder="Capacity">
@@ -87,14 +89,12 @@
             <br>
             <h1 class="h3 mb-3 fw-normal">Enter Course Number</h1>
             <div id="remove-course-number-container" class="form-floating">
-                <input type="text" class="form-control" id="remove-course-number" placeholder="Number">
-                <label for="remove-course-number">Course Number</label>
+                <select class="form-control" id="remove-course-number">
+                </select>
             </div>
             <br>
             <button id="remove-course-form-button" class="w-100 btn btn-lg btn-danger" type="submit">Delete Course</button>
-        
         </div>
-        
         <div class="row justify-content-center">
             <div id="remove-course-error-msg-container" class="col-6">
                 <br>
