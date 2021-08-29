@@ -280,6 +280,7 @@ function FacultyDashboard() {
             updateAddCourseErrorMessage('You must complete the form');
             return;
         }
+        console.log(Number.isInteger(addCourseCapacity));
         if (Number.isInteger(addCourseCapacity)) {
             updateAddCourseErrorMessage('The capacity of the course must be a number')
             return;
