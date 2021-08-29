@@ -331,6 +331,8 @@ function FacultyDashboard() {
 
         let status = 0;
 
+        console.log(info);
+        
         fetch(`${env.apiUrl}/course`, {
             method: 'PUT',
             headers: {
